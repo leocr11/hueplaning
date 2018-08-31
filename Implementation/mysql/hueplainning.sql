@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-08-2018 a las 19:27:49
--- Versión del servidor: 10.1.28-MariaDB
--- Versión de PHP: 7.1.11
+-- Tiempo de generación: 31-08-2018 a las 18:16:50
+-- Versión del servidor: 10.1.31-MariaDB
+-- Versión de PHP: 7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -126,7 +126,8 @@ CREATE TABLE `ne_ttphu` (
   `TTPHU_TTPHU` int(22) NOT NULL,
   `TTPHU_TNOM` varchar(50) NOT NULL,
   `TTPHU_DESC` varchar(50) NOT NULL,
-  `TTPHU_PESO` int(3) NOT NULL
+  `TTPHU_PESO` int(3) NOT NULL,
+  `INPR_INPR` int(22) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -172,7 +173,9 @@ ALTER TABLE `in_tinpr`
 -- Indices de la tabla `le_tlote`
 --
 ALTER TABLE `le_tlote`
-  ADD PRIMARY KEY (`LOTE_LOTE`);
+  ADD PRIMARY KEY (`LOTE_LOTE`),
+  ADD KEY `ne_tlote_ibfk_1` (`RGAL_RGAL`),
+  ADD KEY `ne_tlote_ibfk_2` (`PROV_PROV`);
 
 --
 -- Indices de la tabla `le_tprov`
@@ -190,7 +193,8 @@ ALTER TABLE `le_trgal`
 -- Indices de la tabla `ne_tclsf`
 --
 ALTER TABLE `ne_tclsf`
-  ADD PRIMARY KEY (`CLSF_CLSF`);
+  ADD PRIMARY KEY (`CLSF_CLSF`),
+  ADD KEY `ne_ttphu_ibfk_1` (`TPHU_TPHU`);
 
 --
 -- Indices de la tabla `ne_tprcl`
@@ -198,7 +202,9 @@ ALTER TABLE `ne_tclsf`
 ALTER TABLE `ne_tprcl`
   ADD PRIMARY KEY (`PRCL_PRCL`),
   ADD KEY `USER_USER` (`USER_USER`),
-  ADD KEY `CLSF_CLSF` (`CLSF_CLSF`);
+  ADD KEY `CLSF_CLSF` (`CLSF_CLSF`),
+  ADD KEY `ne_tprcl_ibfk_3` (`LOTE_LOTE`),
+  ADD KEY `ne_tprcl_ibfk_4` (`PROD_PROD`);
 
 --
 -- Indices de la tabla `ne_tprod`
@@ -210,7 +216,8 @@ ALTER TABLE `ne_tprod`
 -- Indices de la tabla `ne_ttphu`
 --
 ALTER TABLE `ne_ttphu`
-  ADD PRIMARY KEY (`TTPHU_TTPHU`);
+  ADD PRIMARY KEY (`TTPHU_TTPHU`),
+  ADD KEY `in_tinpr_ibfk_1` (`INPR_INPR`);
 
 --
 -- Indices de la tabla `us_ttprl`
@@ -230,17 +237,38 @@ ALTER TABLE `us_tuser`
 --
 
 --
+-- Filtros para la tabla `le_tlote`
+--
+ALTER TABLE `le_tlote`
+  ADD CONSTRAINT `ne_tlote_ibfk_1` FOREIGN KEY (`RGAL_RGAL`) REFERENCES `le_trgal` (`RGAL_RGAL`),
+  ADD CONSTRAINT `ne_tlote_ibfk_2` FOREIGN KEY (`PROV_PROV`) REFERENCES `le_tprov` (`PROV_PROV`);
+
+--
+-- Filtros para la tabla `ne_tclsf`
+--
+ALTER TABLE `ne_tclsf`
+  ADD CONSTRAINT `ne_ttphu_ibfk_1` FOREIGN KEY (`TPHU_TPHU`) REFERENCES `ne_ttphu` (`TTPHU_TTPHU`);
+
+--
 -- Filtros para la tabla `ne_tprcl`
 --
 ALTER TABLE `ne_tprcl`
   ADD CONSTRAINT `ne_tprcl_ibfk_1` FOREIGN KEY (`USER_USER`) REFERENCES `us_tuser` (`USER_USER`),
-  ADD CONSTRAINT `ne_tprcl_ibfk_2` FOREIGN KEY (`CLSF_CLSF`) REFERENCES `ne_tclsf` (`CLSF_CLSF`);
+  ADD CONSTRAINT `ne_tprcl_ibfk_2` FOREIGN KEY (`CLSF_CLSF`) REFERENCES `ne_tclsf` (`CLSF_CLSF`),
+  ADD CONSTRAINT `ne_tprcl_ibfk_3` FOREIGN KEY (`LOTE_LOTE`) REFERENCES `le_tlote` (`LOTE_LOTE`),
+  ADD CONSTRAINT `ne_tprcl_ibfk_4` FOREIGN KEY (`PROD_PROD`) REFERENCES `ne_tprod` (`PROD_PROD`);
+
+--
+-- Filtros para la tabla `ne_ttphu`
+--
+ALTER TABLE `ne_ttphu`
+  ADD CONSTRAINT `in_tinpr_ibfk_1` FOREIGN KEY (`INPR_INPR`) REFERENCES `in_tinpr` (`INPR_INPR`);
 
 --
 -- Filtros para la tabla `us_tuser`
 --
 ALTER TABLE `us_tuser`
-  ADD CONSTRAINT `us_tuser_ibfk_1` FOREIGN KEY (`TPRL_TPRL`) REFERENCES `in_tinpr` (`INPR_INPR`);
+  ADD CONSTRAINT `us_ttprl_ibfk_1` FOREIGN KEY (`TPRL_TPRL`) REFERENCES `us_ttprl` (`TPRL_TPRL`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
