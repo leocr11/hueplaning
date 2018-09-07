@@ -65,6 +65,14 @@
 							</script>
 <!--js -->
 <!-- /real-time -->
-		   <script src="../assets/js/menu_jquery.js"></script>
+		   <script src="assets/js/menu_jquery.js"></script>
+		   <!--js -->
+			<script src="assets/js/jquery.nicescroll.js"></script>
+			<script src="assets/js/scripts.js"></script>
+			<!-- Bootstrap Core JavaScript -->
+			   <script src="assets/js/bootstrap.min.js"></script>
+			   <!-- /Bootstrap Core JavaScript -->
+			   <!-- real-time -->
+			<script language="javascript" type="text/javascript" src="assets/js/jquery.flot.js"></script>
 </body>
 </html>

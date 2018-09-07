@@ -19,8 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `hueplainning`
+-- Base de datos: `hueplaning`
 --
+
+DROP DATABASE IF EXISTS hueplaning;
+CREATE DATABASE hueplaning;
+
+USE hueplaning;
 
 -- --------------------------------------------------------
 
@@ -29,7 +34,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `in_tinpr` (
-  `INPR_INPR` int(22) NOT NULL,
+  `INPR_INPR` int(22) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `INPR_CANT` int(22) NOT NULL,
   `TPHU_TPHU` int(22) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -41,7 +46,7 @@ CREATE TABLE `in_tinpr` (
 --
 
 CREATE TABLE `le_tlote` (
-  `LOTE_LOTE` int(22) NOT NULL,
+  `LOTE_LOTE` int(22) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `LOTE_CNTG` int(22) NOT NULL,
   `LOTE_DTCR` varchar(50) NOT NULL,
   `RGAL_RGAL` int(22) NOT NULL,
@@ -56,12 +61,14 @@ CREATE TABLE `le_tlote` (
 --
 
 CREATE TABLE `le_tprov` (
-  `PROV_PROV` int(22) NOT NULL,
+  `PROV_PROV` int(22) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `PROV_NIT`  varchar(50) NOT NULL UNIQUE,
   `PROV_NAME` varchar(50) NOT NULL,
   `PROV_APDO` varchar(50) NOT NULL,
   `PROV_DIRC` varchar(50) NOT NULL,
   `PROV_TELF` varchar(50) NOT NULL,
   `PROV_EMAL` varchar(50) NOT NULL,
+  `PROV_CTAC` varchar(50) NOT NULL,
   `PROV_STDO` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -72,7 +79,7 @@ CREATE TABLE `le_tprov` (
 --
 
 CREATE TABLE `le_trgal` (
-  `RGAL_RGAL` int(22) NOT NULL,
+  `RGAL_RGAL` int(22) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `RGAL_RAZA` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -83,7 +90,7 @@ CREATE TABLE `le_trgal` (
 --
 
 CREATE TABLE `ne_tclsf` (
-  `CLSF_CLSF` int(22) NOT NULL,
+  `CLSF_CLSF` int(22) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `CLSF_CANT` varchar(50) NOT NULL,
   `CLSF_DATE` date NOT NULL,
   `TPHU_TPHU` int(22) NOT NULL
@@ -96,7 +103,7 @@ CREATE TABLE `ne_tclsf` (
 --
 
 CREATE TABLE `ne_tprcl` (
-  `PRCL_PRCL` int(22) NOT NULL,
+  `PRCL_PRCL` int(22) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `PROD_PROD` int(22) NOT NULL,
   `CLSF_CLSF` int(22) NOT NULL,
   `USER_USER` int(22) NOT NULL,
@@ -110,7 +117,7 @@ CREATE TABLE `ne_tprcl` (
 --
 
 CREATE TABLE `ne_tprod` (
-  `PROD_PROD` int(22) NOT NULL,
+  `PROD_PROD` int(22) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `PROD_CANT` varchar(50) NOT NULL,
   `PROD_DATE` varchar(50) NOT NULL,
   `PROD_JORN` varchar(50) NOT NULL
@@ -123,7 +130,7 @@ CREATE TABLE `ne_tprod` (
 --
 
 CREATE TABLE `ne_ttphu` (
-  `TTPHU_TTPHU` int(22) NOT NULL,
+  `TTPHU_TTPHU` int(22) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `TTPHU_TNOM` varchar(50) NOT NULL,
   `TTPHU_DESC` varchar(50) NOT NULL,
   `TTPHU_PESO` int(3) NOT NULL,
@@ -137,7 +144,7 @@ CREATE TABLE `ne_ttphu` (
 --
 
 CREATE TABLE `us_ttprl` (
-  `TPRL_TPRL` int(22) NOT NULL,
+  `TPRL_TPRL` int(22) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `TPRL_NAME` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -148,7 +155,8 @@ CREATE TABLE `us_ttprl` (
 --
 
 CREATE TABLE `us_tuser` (
-  `USER_USER` int(22) NOT NULL,
+  `USER_USER` int(22) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `USER_CEDU` varchar(50) NOT NULL UNIQUE,
   `USER_NAME` varchar(50) NOT NULL,
   `USER_APDO` varchar(50) NOT NULL,
   `USER_DIRC` varchar(50) NOT NULL,
@@ -159,82 +167,6 @@ CREATE TABLE `us_tuser` (
   `TPRL_TPRL` int(22) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `in_tinpr`
---
-ALTER TABLE `in_tinpr`
-  ADD PRIMARY KEY (`INPR_INPR`);
-
---
--- Indices de la tabla `le_tlote`
---
-ALTER TABLE `le_tlote`
-  ADD PRIMARY KEY (`LOTE_LOTE`),
-  ADD KEY `ne_tlote_ibfk_1` (`RGAL_RGAL`),
-  ADD KEY `ne_tlote_ibfk_2` (`PROV_PROV`);
-
---
--- Indices de la tabla `le_tprov`
---
-ALTER TABLE `le_tprov`
-  ADD PRIMARY KEY (`PROV_PROV`);
-
---
--- Indices de la tabla `le_trgal`
---
-ALTER TABLE `le_trgal`
-  ADD PRIMARY KEY (`RGAL_RGAL`);
-
---
--- Indices de la tabla `ne_tclsf`
---
-ALTER TABLE `ne_tclsf`
-  ADD PRIMARY KEY (`CLSF_CLSF`),
-  ADD KEY `ne_ttphu_ibfk_1` (`TPHU_TPHU`);
-
---
--- Indices de la tabla `ne_tprcl`
---
-ALTER TABLE `ne_tprcl`
-  ADD PRIMARY KEY (`PRCL_PRCL`),
-  ADD KEY `USER_USER` (`USER_USER`),
-  ADD KEY `CLSF_CLSF` (`CLSF_CLSF`),
-  ADD KEY `ne_tprcl_ibfk_3` (`LOTE_LOTE`),
-  ADD KEY `ne_tprcl_ibfk_4` (`PROD_PROD`);
-
---
--- Indices de la tabla `ne_tprod`
---
-ALTER TABLE `ne_tprod`
-  ADD PRIMARY KEY (`PROD_PROD`);
-
---
--- Indices de la tabla `ne_ttphu`
---
-ALTER TABLE `ne_ttphu`
-  ADD PRIMARY KEY (`TTPHU_TTPHU`),
-  ADD KEY `in_tinpr_ibfk_1` (`INPR_INPR`);
-
---
--- Indices de la tabla `us_ttprl`
---
-ALTER TABLE `us_ttprl`
-  ADD PRIMARY KEY (`TPRL_TPRL`);
-
---
--- Indices de la tabla `us_tuser`
---
-ALTER TABLE `us_tuser`
-  ADD PRIMARY KEY (`USER_USER`),
-  ADD KEY `TPRL_TPRL` (`TPRL_TPRL`) USING BTREE;
-
---
--- Restricciones para tablas volcadas
---
 
 --
 -- Filtros para la tabla `le_tlote`

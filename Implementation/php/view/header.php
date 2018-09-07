@@ -15,23 +15,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
-<link href="../assets/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+<link href="assets/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 <!-- Custom CSS -->
-<link href="../assets/css/style.css" rel='stylesheet' type='text/css' />
+<link href="assets/css/style.css" rel='stylesheet' type='text/css' />
 <!-- Graph CSS -->
-<link href="../assets/css/font-awesome.css" rel="stylesheet"> 
+<link href="assets/css/font-awesome.css" rel="stylesheet"> 
 <!-- jQuery -->
 <link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css'/>
 <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 <!-- lined-icons -->
-<link rel="stylesheet" href="../assets/css/icon-font.min.css" type='text/css' />
-<script src="../assets/js/amcharts.js"></script>	
-<script src="../assets/js/serial.js"></script>	
-<script src="../assets/js/light.js"></script>	
+<link rel="stylesheet" href="assets/css/icon-font.min.css" type='text/css' />
+<script src="assets/js/amcharts.js"></script>	
+<script src="assets/js/serial.js"></script>	
+<script src="assets/js/light.js"></script>	
 <!-- //lined-icons -->
-<script src="../assets/js/jquery-1.10.2.min.js"></script>
+<script src="assets/js/jquery-1.10.2.min.js"></script>
    <!--pie-chart--->
-<script src="../assets/js/pie-chart.js" type="text/javascript"></script>
+<script src="assets/js/pie-chart.js" type="text/javascript"></script>
  <script type="text/javascript">
 
         $(document).ready(function () {

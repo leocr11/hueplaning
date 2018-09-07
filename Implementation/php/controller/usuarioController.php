@@ -1,6 +1,6 @@
 <?php 
 
-require_once 'model/usuarioPersistencia.php';
+require_once 'model/UsuarioPersistencia.php';
 
 class UsuarioController{	
 
