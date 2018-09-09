@@ -37,7 +37,7 @@ class UsuarioController{
 		 if ($row[0] != null) {
         session_start();
         $_SESSION["id"] = $row[0];
-        echo '<script type="text/javascript">alert("Bienvenido '.$row[2].$_SESSION["id"].'");window.location.href = "index.php";</script>';
+        echo '<script type="text/javascript">alert("Bienvenido '.$row[2].'");window.location.href = "index.php";</script>';
   		} else {
   		  echo '<script type="text/javascript">alert("cedula o contraseña incorrecta");window.location.href = "index.php";</script>';
   		}
