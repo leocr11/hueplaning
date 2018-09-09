@@ -35,16 +35,17 @@ class UsuarioController{
 		$row = $usuario->login();
 
 		 if ($row[0] != null) {
-  		 	$_SESSION["id"] = $usuario->id;
-  		 	session_start();
-       		return require_once 'index.php';
+        session_start();
+        $_SESSION["id"] = $row[0];
+        echo '<script type="text/javascript">alert("Bienvenido '.$row[2].$_SESSION["id"].'");window.location.href = "index.php";</script>';
   		} else {
-  		    echo '<script type="text/javascript">alert("cedula o contraseña incorrecta");</script>';
+  		  echo '<script type="text/javascript">alert("cedula o contraseña incorrecta");window.location.href = "index.php";</script>';
   		}
     }
 
     public function logout(){
     	session_destroy();
+      header('Location: homepage.php');
     }
 
     public function crearUsuario(){
@@ -56,14 +57,16 @@ class UsuarioController{
     }
     public function editarUsuario(){
         $usuario = new UsuarioPersistencia();
-        $this->guardar($usuario);
+        $bool = $this->guardar($usuario);
+        $usuario->id         =    $_REQUEST['id'];
+        $usuario->estado     =    $_REQUEST['estado'];
         if($bool){
           $usuario->editarUsuario();
         }
     }
-    public function buscarUsuario(){
+    public function buscarUsuario($i){
         $usuario = new UsuarioPersistencia();
-        $usuario->id = $_REQUEST['id'];
+        $usuario->id = $i;
         return $usuario->buscarUsuario();
     }
     public function listarUsuarios(){

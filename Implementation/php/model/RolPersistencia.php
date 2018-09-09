@@ -19,9 +19,7 @@ class RolPersistencia extends Conexion
     }
 
     public function buscarRol(){
-      $sql = "SELECT * 
-              FROM US_TTPRL 
-              WHERE TPRL_TPRL = '$this->id'";
+      $sql = "SELECT * FROM US_TTPRL WHERE TPRL_TPRL = '$this->id'";
       return $this->query($sql);
     }
 

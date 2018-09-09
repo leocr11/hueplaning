@@ -30,6 +30,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="assets/js/light.js"></script> 
 <!-- //lined-icons -->
 <script src="assets/js/jquery-1.10.2.min.js"></script>
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
    <!--pie-chart--->
 <script src="assets/js/pie-chart.js" type="text/javascript"></script>
  <script type="text/javascript">

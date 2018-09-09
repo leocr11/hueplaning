@@ -12,9 +12,17 @@
                            <div class="menu">
 									<ul id="menu" >
 									 <li><a href="index.php"><i class="fa fa-tachometer"></i> <span>Home</span></a></li>
+									 <li id="menu-academico" ><a href="#"><i class="fa fa-user"></i> <span>Cuenta</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+									   <ul id="menu-academico-sub" >
+									   <li id="menu-academico-avaliacoes" >
+									   		<a href="<?php echo 'index.php?page=usuario&funcion=perfil&step=1&id='.$_SESSION["id"] ?>" >Perfil</a>
+									   </li>
+										<li id="menu-academico-avaliacoes" ><a href="index.php?page=usuario&funcion=logout&step=2">Log Out</a></li>
+									  </ul>
+									</li>
 									  <li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span>Usuarios</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 									   <ul id="menu-academico-sub" >
-									   <li id="menu-academico-avaliacoes" ><a href="index.php?page=usuario&funcion=lista&step=1">Lista Usuarios</a></li>
+									   <li id="menu-academico-avaliacoes" ><a href="index.php?page=usuario&funcion=listar&step=1">Lista Usuarios</a></li>
 										<li id="menu-academico-avaliacoes" ><a href="index.php?page=usuario&funcion=registro&step=1">Registrar Usuario</a></li>
 									  </ul>
 									</li>

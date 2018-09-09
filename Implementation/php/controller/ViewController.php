@@ -22,11 +22,14 @@ class ViewController{
 			    case "registro":
 			        require_once 'view/usuario/registro.php';
 			        break;
-			    case "modificar":
-			        require_once 'view/usuario/modificar.php';
+			    case "editar":
+			        require_once 'view/usuario/editar.php';
 			        break;
 			    case "inactivar":
 			        require_once 'view/usuario/inactivar.php';
+			        break;
+			    case "perfil":
+			        require_once 'view/usuario/perfil.php';
 			        break;
 			}
 		}else if($step == 2){

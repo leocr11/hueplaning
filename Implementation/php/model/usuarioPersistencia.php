@@ -14,10 +14,9 @@ class UsuarioPersistencia extends Conexion
     public $rol;
 
     public function login(){
-        $sql = "SELECT USER_PSWD,
-                       USER_CEDU 
+        $sql = "SELECT *
                 FROM US_TUSER 
-                WHERE USER_CEDU = '$this->usuario' AND 
+                WHERE USER_CEDU = '$this->cedula' AND 
                       USER_PSWD = '$this->password'";
         $stmt = $this->query($sql);
         return $stmt->fetch();

@@ -44,7 +44,6 @@
 											<div class="form-group">
 												<select name="rol" class="form-control1">
 													<?php  
-														
 														$stmt = $rol->listarRoles();
 														while ($row = $stmt->fetch()) {
 															echo "<option value='".$row[0]."'>".$row[1]."</option>";
