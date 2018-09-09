@@ -4,7 +4,7 @@
         const USERNAME="root";
         const PASSWORD="";
         const HOST="localhost";
-        const DB="parqueadero";
+        const DB="hueplaning";
 
         private function getConnection(){
             $username = self::USERNAME;

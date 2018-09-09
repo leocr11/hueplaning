@@ -3,30 +3,65 @@ require_once('Conexion.php');
 class UsuarioPersistencia extends Conexion
 {
     public $id;
-    public $dni;
-    public $Nombre;
-    public $Apellido;
-    public $Correo;
-    public $Telefono;
+    public $cedula;
+    public $nombre;
+    public $apellido;
+    public $direccion;
+    public $telefono;
+    public $correo;
+    public $password;
+    public $estado;
+    public $rol;
 
-    function login(){
-        $sql = "SELECT adm_documento FROM administradores WHERE adm_usuario = '$usuario' AND adm_password = '$password'";
+    public function login(){
+        $sql = "SELECT USER_PSWD,
+                       USER_CEDU 
+                FROM US_TUSER 
+                WHERE USER_CEDU = '$this->usuario' AND 
+                      USER_PSWD = '$this->password'";
         $stmt = $this->query($sql);
         return $stmt->fetch();
     }
-    function crearUsuario(){
-      $this->query("INSERT INTO usuarios_bici VALUES ('$usu_documento','$usu_nombres','$usu_apellidos','$usu_correo','$usu_placabici','$usu_UID')");
+
+    public function crearUsuario(){
+        $this->query("INSERT INTO US_TUSER 
+                    VALUES ('',
+                            '$this->cedula',
+                            '$this->nombre',
+                            '$this->apellido',
+                            '$this->direccion',
+                            '$this->telefono',
+                            '$this->correo',
+                            '$this->password',
+                            'ACTIVO',
+                            '$this->rol'
+                             )");
     }
-    function editarUsuario(){
-      $this->query("UPDATE usuarios_bici SET usu_nombres = '$usu_nombres',usu_apellidos = '$usu_apellidos',usu_correo = '$usu_correo',usu_placabici = '$usu_placabici',usu_UID = '$usu_UID'  WHERE usu_documento = '$usu_documento'");
+
+    public function editarUsuario(){
+        $this->query("UPDATE US_TUSER SET 
+                    USER_CEDU = '$this->cedula',
+                    USER_NAME = '$this->nombre',
+                    USER_APDO = '$this->apellido',
+                    USER_DIRC = '$this->direccion',
+                    USER_TELF = '$this->telefono',
+                    USER_EMAL = '$this->correo',
+                    USER_PSWD = '$this->password',
+                    USER_STDO = '$this->estado',
+                    TPRL_TPRL = '$this->rol'
+                    WHERE USER_USER = '$this->id'");
     }
-    function buscarUsuario(){
-          $sql = "SELECT * FROM usuarios_bici WHERE usu_documento = '$usu_documento'";
-                  return $this->query($sql);
+
+    public function buscarUsuario(){
+        $sql = "SELECT * 
+                  FROM US_TUSER 
+                  WHERE USER_USER = '$this->id'";
+        return $this->query($sql);
     }
-    function listarUsuarios(){
-          $sql = "SELECT * FROM usuarios_bici";
-                  return $this->query($sql);
+
+    public function listarUsuarios(){
+        $sql = "SELECT * FROM US_TUSER";
+        return $this->query($sql);
     }
 }
 ?>

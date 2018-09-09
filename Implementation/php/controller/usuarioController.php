@@ -4,56 +4,72 @@ require_once 'model/UsuarioPersistencia.php';
 
 class UsuarioController{	
 
-	public function __CONSTRUCT(){
-		$this->user = new userPersistencia();
+	public function guardar($usuario){
+    if(!(empty($_REQUEST['cedula'])&&
+       empty($_REQUEST['nombre'])&&
+       empty($_REQUEST['apellido'])&&
+       empty($_REQUEST['telefono'])&&
+       empty($_REQUEST['correo'])&&
+       empty($_REQUEST['password'])&&
+       empty($_REQUEST['rol']))){
+      	$usuario->cedula	   =		$_REQUEST['cedula'];
+      	$usuario->nombre	   =		$_REQUEST['nombre'];
+      	$usuario->apellido	 =		$_REQUEST['apellido'];
+      	$usuario->direccion  =		$_REQUEST['direccion'];
+      	$usuario->telefono	 =		$_REQUEST['telefono'];
+      	$usuario->correo	   =		$_REQUEST['correo'];
+      	$usuario->password	 =		$_REQUEST['password'];
+        $usuario->rol        =    $_REQUEST['rol'];
+        return true;
+      }else{
+        return false;
+      }
 	}
 
-	public function guardar(){
-		$user->id       = $_REQUEST['id'];
-		$user->dni      = $_REQUEST['dni'];
-		$user->Nombre   = $_REQUEST['Nombre'];
-		$user->Apellido = $_REQUEST['Apellido'];
-		$user->Correo   = $_REQUEST['Correo'];
-		$user->telefono = $_REQUEST['telefono'];
-		$user->ususario = $_REQUEST['user'];
-		$user->password = $_REQUEST['password'];
-	}
 
+	public function login(){
+    $usuario = new UsuarioPersistencia();
+		$usuario->cedula  = $_REQUEST['cedula'];
+		$usuario->password = $_REQUEST['password'];
 
-	function login(){
-		$user->usuario  = $_REQUEST['user'];
-		$user->password = $_REQUEST['password'];
-
-		$row = $user->login();
+		$row = $usuario->login();
 
 		 if ($row[0] != null) {
-		 	$_SESSION["id"] = $user->id;
-		 	session_start();
-     		echo '<script type="text/javascript">window.location="homepage.php?'.$_SESSION["id"].'";</script>';
-		} else {
-		    echo '<script type="text/javascript">window.location="index.html?fallido";</script>';
-		}
+  		 	$_SESSION["id"] = $usuario->id;
+  		 	session_start();
+       		return require_once 'index.php';
+  		} else {
+  		    echo '<script type="text/javascript">alert("cedula o contraseña incorrecta");</script>';
+  		}
     }
 
-    function logout(){
+    public function logout(){
     	session_destroy();
     }
 
-    function crearUsuario(){
-       $this->guardar();
-       $user->crearUsuario;
+    public function crearUsuario(){
+        $usuario = new UsuarioPersistencia();
+        $bool = $this->guardar($usuario);
+        if($bool){
+          $usuario->crearUsuario();
+        }
     }
-    function editarUsuario(){
-       $this->guardar();
-       $user->crearUsuario();
+    public function editarUsuario(){
+        $usuario = new UsuarioPersistencia();
+        $this->guardar($usuario);
+        if($bool){
+          $usuario->editarUsuario();
+        }
     }
-    function buscarUsuario(){
-       $user->id = $_REQUEST['id'];
-       $user->buscarUsuario();
+    public function buscarUsuario(){
+        $usuario = new UsuarioPersistencia();
+        $usuario->id = $_REQUEST['id'];
+        return $usuario->buscarUsuario();
     }
-    function listarUsuarios(){
-       $user->listarUsuarios();
+    public function listarUsuarios(){
+        $usuario = new UsuarioPersistencia();
+        return $usuario->listarUsuarios();
     }
 }
-}
+
  ?>

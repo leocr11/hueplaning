@@ -25,9 +25,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 <!-- lined-icons -->
 <link rel="stylesheet" href="assets/css/icon-font.min.css" type='text/css' />
-<script src="assets/js/amcharts.js"></script>	
-<script src="assets/js/serial.js"></script>	
-<script src="assets/js/light.js"></script>	
+<script src="assets/js/amcharts.js"></script>  
+<script src="assets/js/serial.js"></script>    
+<script src="assets/js/light.js"></script> 
 <!-- //lined-icons -->
 <script src="assets/js/jquery-1.10.2.min.js"></script>
    <!--pie-chart--->
@@ -73,7 +73,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
    <div class="page-container">
    <!--/content-inner-->
-	<div class="left-content">
-	<!-- //header-ends -->
-				
-		    <!--content-->
+    <div class="left-content">
+       <div class="inner-content" >
+                <!--content-->
+                
