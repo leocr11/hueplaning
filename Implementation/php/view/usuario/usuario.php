@@ -11,7 +11,7 @@
 		        break;
 			case "registro":
 				$usuario->crearUsuario();
-				header('Location: index.php?page=usuario&funcion=listar&step=1');
+				//header('Location: index.php?page=usuario&funcion=listar&step=1');
 		        break;
 		    case "editar":
 		        $usuario->editarUsuario();

@@ -1,6 +1,7 @@
 <?php 
 
 require_once 'model/UsuarioPersistencia.php';
+require_once 'controller/MailService.php';
 
 class UsuarioController{	
 
@@ -53,6 +54,7 @@ class UsuarioController{
         $bool = $this->guardar($usuario);
         if($bool){
           $usuario->crearUsuario();
+          $this->emailUsuario($usuario);
         }
     }
     public function editarUsuario(){
@@ -72,6 +74,25 @@ class UsuarioController{
     public function listarUsuarios(){
         $usuario = new UsuarioPersistencia();
         return $usuario->listarUsuarios();
+    }
+    public function emailUsuario($usuario){
+      $email = new MailService();
+      $email->setFrom("daalpiva@gmail.com");
+      $email->setTo($usuario->correo);
+      $email->setSubject("CUENTA HUEPLANNING");
+      $email->setMessage(
+        "\ncedula:     " .$usuario->cedula   .
+        "\nnombre:     " .$usuario->nombre   .
+        "\napellido:   " .$usuario->apellido .
+        "\ndireccion:  " .$usuario->direccion.
+        "\ntelefono:   " .$usuario->telefono .
+        "\ncorreo:     " .$usuario->correo   .
+        "\npassword:   " .$usuario->password .
+        "\nrol:        " .$usuario->rol
+      );
+      $email->setHeader("");
+
+      $email->sendMail();
     }
 }
 
