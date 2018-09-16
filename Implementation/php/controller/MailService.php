@@ -1,30 +1,19 @@
 <?php 
 
-class MaiService{	
-  	
-	private $from;
+class MailService{	
 	private $to;
 	private $subject;
 	private $message;
-	private $header;
 
-	public function __construct0(){}
-
-    public function __construct1($from,$to,$subject,$message,$header){
-       
-       $this->from = $from;
-       $this->to = $to;
-       $this->subject = $subject;
-       $this->message = $message;
-       $this->header = $header;
+	public function __construct0(){
     }
 
-    public function setFrom($from){
-    	$this->from = $from;
+    public function __construct1($from,$to,$subject,$message){
+        $this->to = $to;
+        $this->subject = $subject;
+        $this->message = $message;
     }
-    public function getFrom(){
-    	return $this->from;
-    }
+
     public function setTo($to){
     	$this->to = $to;
     }
@@ -43,15 +32,12 @@ class MaiService{
     public function getMessage(){
     	return $this->message;
     }
-    public function setHeader($header){
-    	$this->header = $header;
-    }
-    public function getHeader(){
-    	return $this->message;
-    }
     public function sendMail(){
     	try{
-    		mail($this->to,$this->subject,$this->message,$this->header);
+            $headers =  'MIME-Version: 1.0' . "\r\n"; 
+            $headers .= 'From: Hueplaning <info@gmail.com>' . "\r\n";
+            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+    		mail($this->to,$this->subject,$this->message,$headers);
     	}catch(Exception $e){
     		echo 'Exepcion capturada: '.$e->getMessage().'\n';
     	}

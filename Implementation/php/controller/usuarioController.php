@@ -77,7 +77,6 @@ class UsuarioController{
     }
     public function emailUsuario($usuario){
       $email = new MailService();
-      $email->setFrom("daalpiva@gmail.com");
       $email->setTo($usuario->correo);
       $email->setSubject("CUENTA HUEPLANNING");
       $email->setMessage(
@@ -90,7 +89,6 @@ class UsuarioController{
         "\npassword:   " .$usuario->password .
         "\nrol:        " .$usuario->rol
       );
-      $email->setHeader("");
 
       $email->sendMail();
     }
