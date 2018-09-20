@@ -26,6 +26,19 @@
 										<li id="menu-academico-avaliacoes" ><a href="index.php?page=usuario&funcion=registro&step=1">Registrar Usuario</a></li>
 									  </ul>
 									</li>
+									<li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span>Producción</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+									   <ul id="menu-academico-sub" >
+									   <li id="menu-academico-avaliacoes" ><a href="index.php?page=pDiaria&funcion=listar&step=1">Diaria</a></li>
+										<li id="menu-academico-avaliacoes" ><a href="index.php?page=pClasificacion&funcion=listar&step=1">Clasificacion</a></li>
+										<li id="menu-academico-avaliacoes" ><a href="index.php?page=pRegistro&funcion=listar&step=1">Registro</a></li>
+									  </ul>
+									</li>
+									 <li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span>Lotes</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+									   <ul id="menu-academico-sub" >
+									   <li id="menu-academico-avaliacoes" ><a href="index.php?page=lote&funcion=listar&step=1">Lista Lote</a></li>
+										<li id="menu-academico-avaliacoes" ><a href="index.php?page=lote&funcion=registro&step=1">Registrar Lote</a></li>
+									  </ul>
+									</li>
 								  </ul>
 								</div>
 							  </div>
