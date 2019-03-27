@@ -2,7 +2,7 @@
     abstract class Conexion{
 
         const USERNAME="root";
-        const PASSWORD="";
+        const PASSWORD="MH184dS2NZShL7";
         const HOST="localhost";
         const DB="hueplaning";
 
